@@ -1,20 +1,14 @@
-name: HTML Validator
+name: HTML Check
 
-on: [push]
+on:
+  push:
 
 jobs:
-  html-validator:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Validate HTML
-      run: |
-        # install HTML validator
-        npm install -g html-validator
-        
-        # run validator on all .html files in repository
-        html-validator **/*.html
-        
+    - uses: actions/checkout@v2 # Requried will all actions
+    - name: Checks HTML5
+      uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+      with:
+        root: ./
